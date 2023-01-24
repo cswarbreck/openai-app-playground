@@ -35,7 +35,7 @@ export default async function (req, res) {
     // });
     // res.status(200).json({ result: completion.data.choices[0].text });
     const response = await openai.createImage({
-      prompt: `a cartoon ${generatePrompt(animal)} in the style of andy warhol with no text`,
+      prompt: `a cartoon ${generatePrompt(animal)} in the style of andy warhol`,
       n: 1,
       size: "512x512",
     });
