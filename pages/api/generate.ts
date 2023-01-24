@@ -1,5 +1,7 @@
 import { Configuration, OpenAIApi } from "openai";
 
+const fs = require('fs')
+
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -26,12 +28,19 @@ export default async function (req, res) {
   }
 
   try {
-    const completion = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: generatePrompt(animal),
-      temperature: 0.6,
+    // const completion = await openai.createCompletion({
+    //   model: "text-davinci-003",
+    //   prompt: generatePrompt(animal),
+    //   temperature: 0.6,
+    // });
+    // res.status(200).json({ result: completion.data.choices[0].text });
+    const response = await openai.createImage({
+      prompt: `a cartoon ${generatePrompt(animal)} in the style of andy warhol with no text`,
+      n: 1,
+      size: "512x512",
     });
-    res.status(200).json({ result: completion.data.choices[0].text });
+    res.status(200).json({ result: response.data.data[0].url });
+    // result = response.data.data[0].url;
   } catch(error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
