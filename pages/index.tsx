@@ -49,9 +49,11 @@ export default function Home() {
             value={animalInput}
             onChange={(e) => setAnimalInput(e.target.value)}
           />
-          <input type="submit" value="Generate names" />
+          <input type="submit" value="Generate image" />
         </form>
-        <div className={styles.result}>{result}</div>
+        {/* <div className={styles.result}>{result}</div>
+         */}
+         <img src={result} alt={animalInput} />
       </main>
     </div>
   );
