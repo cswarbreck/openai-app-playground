@@ -51,9 +51,10 @@ export default function Home() {
           />
           <input type="submit" value="Generate image" />
         </form>
-        {/* <div className={styles.result}>{result}</div>
-         */}
-         <img src={result} alt={animalInput} />
+        <div className={styles.result}>{result}</div>
+         
+         {/* <img src={result} alt={animalInput} />
+          */}
       </main>
     </div>
   );
