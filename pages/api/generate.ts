@@ -1,11 +1,19 @@
-import { Configuration, OpenAIApi } from "openai";
+// import { Configuration, OpenAIApi } from "openai";
 
 const fs = require('fs')
 
+// const configuration = new Configuration({
+//   apiKey: process.env.OPENAI_API_KEY,
+// });
+// const openai = new OpenAIApi(configuration);
+
+const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
+
+
 
 export default async function (req, res) {
   if (!configuration.apiKey) {
@@ -34,12 +42,22 @@ export default async function (req, res) {
     //   temperature: 0.6,
     // });
     // res.status(200).json({ result: completion.data.choices[0].text });
-    const response = await openai.createImage({
-      prompt: `a cartoon ${generatePrompt(animal)} in the style of andy warhol`,
-      n: 1,
-      size: "512x512",
+    // const response = await openai.createImage({
+    //   // prompt: `a cartoon ${generatePrompt(animal)} in the style of andy warhol`,
+    //   prompt: generatePrompt(animal),
+    //   n: 1,
+    //   size: "512x512",
+    // });
+
+    const response = await openai.createCompletion({
+      model: "code-davinci-002",
+      prompt: generatePrompt(animal)
+      // stream: true
     });
-    res.status(200).json({ result: response.data.data[0].url });
+
+    console.log(response.data);
+    // res.status(200).json({ result: response.data.data[0].url });
+      res.status(200).json({ result: response.data.choices[0].text });
     // result = response.data.data[0].url;
   } catch(error) {
     // Consider adjusting the error handling logic for your use case
