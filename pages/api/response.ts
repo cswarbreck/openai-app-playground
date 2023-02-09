@@ -26,7 +26,7 @@ export default async function handler(
     const response = await openai.createCompletion({
       model: `${currentModel}`,
       prompt: `${message}`,
-      temperature: 0.2,
+      temperature: 0.9,
       max_tokens: 3000,
       top_p: 1,
       frequency_penalty: 0.5,
