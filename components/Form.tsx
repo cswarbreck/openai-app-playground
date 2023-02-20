@@ -1,6 +1,7 @@
 'use client';
 import { useRef, useState } from 'react';
 import useSWR from 'swr';
+import './styles.scss'
 
 interface ModelType {
   object: 'engine';
@@ -92,7 +93,7 @@ const Form = () => {
   };
 
   return (
-    <div className='flex justify-center'>
+    <div className='flex justify-center main-page'>
       <select
         value={currentModel}
         onChange={handleModelChange}
@@ -112,7 +113,7 @@ const Form = () => {
       >
         Clear History
       </button>
-      <div className='w-full mx-2 flex flex-col items-start gap-3 pt-6 last:mb-6 md:mx-auto md:max-w-3xl' style={{backgroundColor: 'lightcoral', marginTop: 50}}>
+      <div className='w-full mx-2 flex flex-col items-start gap-3 pt-6 last:mb-6 md:mx-auto md:max-w-3xl main-response'>
         {isLoading
           ? response.map((item: any, index: number) => {
               return (
