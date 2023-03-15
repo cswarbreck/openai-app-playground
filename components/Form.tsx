@@ -2,6 +2,7 @@
 import { useRef, useState } from 'react';
 import useSWR from 'swr';
 import './styles.scss'
+import Button from './Button'
 
 interface ModelType {
   object: 'engine';
@@ -106,13 +107,12 @@ const Form = () => {
         ))}
       </select>
 
-      <button
+      <Button
         onClick={handleReset}
-        type='reset'
-        className='fixed top-5 right-5 p-4 rounded-md bg-white text-gray-500 dark:hover:text-gray-400 dark:hover:bg-gray-900 disabled:hover:bg-transparent dark:disabled:hover:bg-transparent'
-      >
-        Clear History
-      </button>
+        type={'reset'}
+        label={'Clear History'}
+        className={'fixed top-5 right-5 p-4 rounded-md bg-white text-gray-500 dark:hover:text-gray-400 dark:hover:bg-gray-900 disabled:hover:bg-transparent dark:disabled:hover:bg-transparent'}
+      />
       <div className='w-full mx-2 flex flex-col items-start gap-3 pt-6 last:mb-6 md:mx-auto md:max-w-3xl main-response'>
         {isLoading
           ? response.map((item: any, index: number) => {
@@ -126,7 +126,7 @@ const Form = () => {
                   <p>{item}</p>
                 </div>
               );
-            })
+            }) 
           : response
           ? response.map((item: string, index: number) => {
               return (
@@ -136,7 +136,7 @@ const Form = () => {
                     index % 2 === 0 ? 'bg-blue-500' : 'bg-gray-500'
                   } p-3 rounded-lg`}
                 >
-                  <p>{item}</p>
+                  <p className='response-item'>{item}</p>
                 </div>
               );
             })
